@@ -1,0 +1,148 @@
+
+using System;
+public struct details
+{
+    public string customer_name;
+    public string account_type;
+    public int customer_id;
+    public int deposite_amount;
+
+}
+
+class Bank
+{
+    static void Main(string[] args)
+    {
+        details[] customer_data = new details[4];
+        customer_data[0] = new details()
+        {
+            customer_name = "abc",
+            account_type = "saving",
+            customer_id = 101,
+            deposite_amount = 2000
+
+        };
+        customer_data[1] = new details()
+        {
+            customer_name = "pqr",
+            account_type = "current",
+            customer_id = 102,
+            deposite_amount = 3000
+        };
+        customer_data[2] = new details()
+        {
+            customer_name = "xyz",
+            account_type = "saving",
+            customer_id = 103,
+            deposite_amount = 4000
+        };
+        customer_data[3] = new details()
+        {
+            customer_name = "bca",
+            account_type = "dmrt",
+            customer_id = 104,
+            deposite_amount = 5000
+        };
+        Console.WriteLine(customer_data[0].customer_id);
+
+        Console.WriteLine("1.Check details\n2.Withdraw\n3.Calculate Intrest");
+        int choice = Convert.ToInt32(Console.ReadLine());
+        if (choice == 1)
+        {
+            account_details(customer_data);
+        }
+        else if(choice==2){
+            withdraw(customer_data);
+        }
+        else if(choice==3){
+            intrest(customer_data);            
+        }
+        
+    }
+    static void account_details(details[] customer_data)
+    {
+        Console.WriteLine("Enter customer id:");
+        int n = Convert.ToInt32(Console.ReadLine());
+        for (int i = 0; i < 3; i++)
+        {
+            if (customer_data[i].customer_id == n)
+            {
+                Console.WriteLine("Customer Id:" + customer_data[i].customer_id);
+                Console.WriteLine("Customer Name:" + customer_data[i].customer_name);
+                Console.WriteLine("Account type:" + customer_data[i].account_type);
+                Console.WriteLine("Balance :" + customer_data[i].deposite_amount);
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Wrong credentials!");
+                Console.ReadKey();
+            }
+        }
+
+
+    }
+    static void withdraw(details[] customer_data)
+    {
+        Console.WriteLine("Enter customer id:");
+        int id = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter money to be withdraw:");
+        int amount = Convert.ToInt32(Console.ReadLine());
+        for (int i = 0; i < 3; i++)
+        {
+            if (customer_data[i].customer_id == id)
+            {
+                customer_data[i].deposite_amount = customer_data[i].deposite_amount - amount;
+                 Console.WriteLine("Balance :" + customer_data[i].deposite_amount);
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Wrong credentials!");
+                Console.ReadKey();
+            }
+        }
+
+
+    }
+    static void intrest(details[] customer_data)
+    {
+        float intrest;
+        Console.WriteLine("Enter customer id:");
+        int id = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter account type:");
+        string type = (Console.ReadLine());
+        for (int i = 0; i < 3; i++)
+        {
+            if (customer_data[i].customer_id == id)
+            {
+                if (type == "saving")
+                {
+                     intrest = (((customer_data[i].deposite_amount) *( 1) * (4 ))/100);
+                    Console.WriteLine("Intrest for one year is  :" + intrest);
+                    Console.ReadKey();
+                }
+                else if(type== "current")
+                {
+                     intrest = (customer_data[i].deposite_amount * 1 * (1 / 100));
+                    Console.WriteLine("Intrest for one year is  :" + intrest);
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Not Applicable");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Wrong credentials!");
+                Console.ReadKey();
+            }
+        }
+
+
+    }
+
+}
+
+
