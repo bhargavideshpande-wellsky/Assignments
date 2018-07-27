@@ -14,7 +14,7 @@ namespace ConsoleApp1
     class LinkedList : DataStructure
     {
         private Node head;
-        private Node current;//This will have latest node
+        private Node current;
         public int Count;
         public LinkedList()
         {
